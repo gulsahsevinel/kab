@@ -1,4 +1,4 @@
-package com.gulsah.kab
+package com.gulsah.kab.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import com.gulsah.kab.R
 import com.gulsah.kab.databinding.FragmentBasketBinding
 
 

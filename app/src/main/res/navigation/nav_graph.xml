@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homePageFragment">
+
+    <fragment
+        android:id="@+id/homePageFragment"
+        android:name="com.gulsah.kab.view.HomePageFragment"
+        android:label="HomePageFragment"
+        tools:layout="@layout/fragment_home_page" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.gulsah.kab.view.DetailFragment"
+        android:label="DetailFragment"
+        tools:layout="@layout/fragment_detail" />
+    <fragment
+        android:id="@+id/basketFragment"
+        android:name="com.gulsah.kab.view.BasketFragment"
+        android:label="BasketFragment"
+        tools:layout="@layout/fragment_basket" />
+</navigation>
