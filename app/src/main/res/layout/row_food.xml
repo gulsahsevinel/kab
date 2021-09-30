@@ -80,7 +80,7 @@
                     android:id="@+id/imageButtonAddBasket"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/button_background"
+                    android:background="@drawable/add_basket_background"
                     android:backgroundTint="@color/main_dark_orange"
                     app:layout_constraintBottom_toBottomOf="@+id/textViewFoodPrice"
                     app:layout_constraintEnd_toEndOf="parent"
