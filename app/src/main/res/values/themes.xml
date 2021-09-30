@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.Kab" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/main_light_orange</item>
-        <item name="colorPrimaryVariant">@color/main_light_orange</item>
+        <item name="colorPrimary">@color/main_dark_orange</item>
+        <item name="colorPrimaryVariant">@color/main_dark_orange</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

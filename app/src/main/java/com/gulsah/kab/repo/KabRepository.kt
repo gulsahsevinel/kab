@@ -1,6 +1,5 @@
 package com.gulsah.kab.repo
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.gulsah.kab.entity.*
 import com.gulsah.kab.retrofit.ApiUtils
@@ -12,12 +11,20 @@ import retrofit2.Response
 class KabRepository {
     private var fdao: FoodDaoInterface
     private var foodList: MutableLiveData<List<Food>>
-    private var basketlist: MutableLiveData<List<FoodBasket>>
+    private var basketList: MutableLiveData<List<FoodBasket>>
 
     init {
         fdao = ApiUtils.getFoodDaoInterface()
         foodList = MutableLiveData()
-        basketlist = MutableLiveData()
+        basketList = MutableLiveData()
+    }
+
+    fun getFood() : MutableLiveData<List<Food>>{
+        return foodList
+    }
+
+    fun getBasketFood() : MutableLiveData<List<FoodBasket>>{
+        return basketList
     }
 
     fun getAllFood() {
@@ -35,7 +42,7 @@ class KabRepository {
         fdao.getAllFoodsInBasket("gulsahsevinel").enqueue(object : Callback<BasketReponse> {
             override fun onResponse(call: Call<BasketReponse>, response: Response<BasketReponse>) {
                 val list = response.body()!!.foodsInBasket
-                basketlist.value = list
+                basketList.value = list
             }
 
             override fun onFailure(call: Call<BasketReponse>, t: Throwable) {}
