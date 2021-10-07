@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homePageFragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/homePageFragment"
@@ -20,4 +20,31 @@
         android:name="com.gulsah.kab.view.BasketFragment"
         android:label="BasketFragment"
         tools:layout="@layout/fragment_basket" />
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.gulsah.kab.splashScreen.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/splashScreen_to_viewpager"
+            app:destination="@id/viewPagerFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/splash_to_home"
+            app:destination="@id/homePageFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewPagerFragment"
+        android:name="com.gulsah.kab.onBoarding.ViewPagerFragment"
+        android:label="fragment_view_pager"
+        tools:layout="@layout/fragment_view_pager" >
+        <action
+            android:id="@+id/viewpager_to_home"
+            app:destination="@id/homePageFragment"
+            app:popUpTo="@id/viewPagerFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

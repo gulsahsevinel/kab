@@ -1,5 +1,6 @@
 package com.gulsah.kab.repo
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.gulsah.kab.entity.*
 import com.gulsah.kab.retrofit.ApiUtils
@@ -19,21 +20,20 @@ class KabRepository {
         basketList = MutableLiveData()
     }
 
-    fun getFood() : MutableLiveData<List<Food>>{
+    fun getFood(): MutableLiveData<List<Food>> {
         return foodList
     }
 
-    fun getBasketFood() : MutableLiveData<List<FoodBasket>>{
+    fun getBasketFood(): MutableLiveData<List<FoodBasket>> {
         return basketList
     }
 
     fun getAllFood() {
         fdao.getAllFoods().enqueue(object : Callback<FoodResponse> {
             override fun onResponse(call: Call<FoodResponse>, response: Response<FoodResponse>) {
-                val list = response.body()!!.foods
+                val list = response.body()?.foods
                 foodList.value = list
             }
-
             override fun onFailure(call: Call<FoodResponse>, t: Throwable) {}
         })
     }
@@ -44,26 +44,19 @@ class KabRepository {
                 val list = response.body()!!.foodsInBasket
                 basketList.value = list
             }
-
-            override fun onFailure(call: Call<BasketReponse>, t: Throwable) {}
+            override fun onFailure(call: Call<BasketReponse>, t: Throwable?) {
+                if (t != null) {
+                    Log.e("getallcartitems", t.toString())
+                    basketList.value = emptyList()
+                }
+            }
         })
     }
 
-    fun addToBasket(
-        foodId: Int,
-        foodName: String,
-        foodMediaUrl: String,
-        foodPrice: Int,
-        foodCount: Int
-    ) {
+    fun addToBasket(foodId: Int, foodName: String, foodMediaUrl: String, foodPrice: Int, foodCount: Int) {
         fdao.addToBasket(foodId, foodName, foodMediaUrl, foodPrice, foodCount, "gulsahsevinel")
             .enqueue(object : Callback<CRUDResponse> {
-                override fun onResponse(
-                    call: Call<CRUDResponse>,
-                    response: Response<CRUDResponse>
-                ) {
-                }
-
+                override fun onResponse(call: Call<CRUDResponse>, response: Response<CRUDResponse>) {}
                 override fun onFailure(call: Call<CRUDResponse>, t: Throwable) {}
             })
     }

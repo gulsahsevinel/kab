@@ -7,11 +7,15 @@
         <variable
             name="fragment"
             type="com.gulsah.kab.view.HomePageFragment" />
+        <variable
+            name="basketListSize"
+            type="Integer" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.HomePageFragment">
+        tools:context=".view.HomePageFragment"
+        android:background="#FAFAFA">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -21,10 +25,12 @@
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             app:elevation="0dp"
+            android:set_basket="@{basketListSize}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/toolbar_menu">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -44,16 +50,6 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_kab_title" />
 
-                <ImageView
-                    android:id="@+id/imageViewBasket"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
-                    android:adjustViewBounds="true"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_empty_basket" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.appcompat.widget.Toolbar>
@@ -89,7 +85,8 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv"
-                    android:padding="20dp"
+                    android:padding="5dp"
+                    android:background="#FAFAFA"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     tools:listitem="@layout/row_food"

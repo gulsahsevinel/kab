@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="foodObject"
+            type="com.gulsah.kab.entity.FoodBasket" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -10,7 +16,7 @@
         android:layout_marginBottom="5dp">
 
         <androidx.cardview.widget.CardView
-            android:backgroundTint="@color/adapterColor"
+            android:id="@+id/basketCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -38,6 +44,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
+                    android:text="@{foodObject.foodName}"
                     android:fontFamily="@font/work_sans"
                     android:textColor="@color/darkGrayText"
                     android:textSize="18sp"
@@ -51,6 +58,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
+                    android:setPrice="@{foodObject.foodPrice}"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/work_sans_bold"
                     android:textColor="@color/darkGrayText"
@@ -84,7 +92,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/textView"
                     app:layout_constraintEnd_toStartOf="@+id/textView"
                     app:layout_constraintTop_toTopOf="@+id/textView"
-                    app:srcCompat="@drawable/ic_iminus" />
+                    app:srcCompat="@drawable/icn_minus_gray" />
 
                 <TextView
                     android:id="@+id/textView"
@@ -111,7 +119,7 @@
                     android:scaleType="center"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:srcCompat="@drawable/ic_iadd" />
+                    app:srcCompat="@drawable/icn_add" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
