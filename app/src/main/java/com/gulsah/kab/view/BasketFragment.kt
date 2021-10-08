@@ -18,8 +18,8 @@ import com.gulsah.kab.viewModel.BasketViewModel
 class BasketFragment : Fragment() {
 
     private lateinit var binding: FragmentBasketBinding
-    private lateinit var viewModel : BasketViewModel
-    private lateinit var adapter : BasketAdapter
+    private lateinit var viewModel: BasketViewModel
+    private lateinit var adapter: BasketAdapter
 
 
     override fun onCreateView(
@@ -30,10 +30,14 @@ class BasketFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_basket, container, false)
         binding.basketFragment = this
 
-        viewModel.basketList.observe(viewLifecycleOwner){
-            adapter = BasketAdapter(requireContext(),it,viewModel)
+        viewModel.basketList.observe(viewLifecycleOwner) {
+            adapter = BasketAdapter(requireContext(), it, viewModel)
             binding.rv.adapter = adapter
             Log.e("size basket fragment", it.size.toString())
+        }
+
+        viewModel.totalPrice.observe(viewLifecycleOwner) {
+            binding.totalPrice = it
         }
 
         binding.imageViewBack.setOnClickListener {
@@ -45,7 +49,7 @@ class BasketFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val temp : BasketViewModel by viewModels()
+        val temp: BasketViewModel by viewModels()
         viewModel = temp
     }
 

@@ -9,11 +9,12 @@ class BasketViewModel : ViewModel() {
 
     var repo = KabRepository()
     var basketList = MutableLiveData<List<FoodBasket>>()
+    var totalPrice = MutableLiveData<Int>()
 
     init {
         basketLoad()
         basketList = repo.getBasketFood()
-
+        totalPrice = repo.getTotalPrice()
     }
 
     fun basketLoad() {

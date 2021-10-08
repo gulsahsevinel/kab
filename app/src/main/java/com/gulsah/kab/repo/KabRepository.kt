@@ -12,12 +12,14 @@ import retrofit2.Response
 class KabRepository {
     private var fdao: FoodDaoInterface
     private var foodList: MutableLiveData<List<Food>>
+    private var totalPrice: MutableLiveData<Int>
     private var basketList: MutableLiveData<List<FoodBasket>>
 
     init {
         fdao = ApiUtils.getFoodDaoInterface()
         foodList = MutableLiveData()
         basketList = MutableLiveData()
+        totalPrice = MutableLiveData()
     }
 
     fun getFood(): MutableLiveData<List<Food>> {
@@ -28,12 +30,17 @@ class KabRepository {
         return basketList
     }
 
+    fun getTotalPrice(): MutableLiveData<Int> {
+        return totalPrice
+    }
+
     fun getAllFood() {
         fdao.getAllFoods().enqueue(object : Callback<FoodResponse> {
             override fun onResponse(call: Call<FoodResponse>, response: Response<FoodResponse>) {
                 val list = response.body()?.foods
                 foodList.value = list
             }
+
             override fun onFailure(call: Call<FoodResponse>, t: Throwable) {}
         })
     }
@@ -42,21 +49,39 @@ class KabRepository {
         fdao.getAllFoodsInBasket("gulsahsevinel").enqueue(object : Callback<BasketReponse> {
             override fun onResponse(call: Call<BasketReponse>, response: Response<BasketReponse>) {
                 val list = response.body()!!.foodsInBasket
+                var price = 0
+                for (i in list) {
+                    price += i.foodPrice * i.foodBasketCount
+                }
                 basketList.value = list
+                totalPrice.value = price
             }
+
             override fun onFailure(call: Call<BasketReponse>, t: Throwable?) {
                 if (t != null) {
                     Log.e("getallcartitems", t.toString())
                     basketList.value = emptyList()
+                    totalPrice.value = 0
                 }
             }
         })
     }
 
-    fun addToBasket(foodId: Int, foodName: String, foodMediaUrl: String, foodPrice: Int, foodCount: Int) {
+    fun addToBasket(
+        foodId: Int,
+        foodName: String,
+        foodMediaUrl: String,
+        foodPrice: Int,
+        foodCount: Int
+    ) {
         fdao.addToBasket(foodId, foodName, foodMediaUrl, foodPrice, foodCount, "gulsahsevinel")
             .enqueue(object : Callback<CRUDResponse> {
-                override fun onResponse(call: Call<CRUDResponse>, response: Response<CRUDResponse>) {}
+                override fun onResponse(
+                    call: Call<CRUDResponse>,
+                    response: Response<CRUDResponse>
+                ) {
+                }
+
                 override fun onFailure(call: Call<CRUDResponse>, t: Throwable) {}
             })
     }
