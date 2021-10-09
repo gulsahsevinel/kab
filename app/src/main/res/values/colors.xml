@@ -8,15 +8,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 <!--    colorScheme-->
-    <color name="main_light_orange">#FEB16C</color>
     <color name="main_dark_orange">#FE9E47</color>
     <color name="darkGray">#505050</color>
     <color name="darkGrayText">#505050</color>
     <color name="lightGray">#A7A7A7</color>
-    <color name="searchBarGray">#8D8D8D</color>
     <color name="red">#DA6163</color>
     <color name="green">#5dad66</color>
-    <color name="colorNoteSearchBackground">#333333</color>
     <color name="adapterColor">#f3f3f3</color>
 
 

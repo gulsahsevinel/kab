@@ -33,6 +33,7 @@ class BasketAdapter(
     override fun onBindViewHolder(holder: CardHolder, position: Int) {
         val food = foodList[position]
         holder.basketBinding.foodObject = food
+        holder.basketBinding.foodCount = food.foodBasketCount
 
         Picasso.get().load("http://kasimadalan.pe.hu/yemekler/resimler/${food.foodMediaUrl}")
             .into(holder.basketBinding.imageView)
@@ -41,6 +42,7 @@ class BasketAdapter(
             viewModel.delete(food.foodId)
             viewModel.basketLoad()
         }
+
     }
 
     override fun getItemCount(): Int {

@@ -81,6 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
         android:text="İlerle"
+        android:padding="8dp"
         android:fontFamily="@font/work_sans_semibold"
         android:textSize="18sp"
         android:textAllCaps="false"

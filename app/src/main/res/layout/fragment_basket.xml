@@ -55,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/work_sans_semibold"
-                    android:text="Basket"
+                    android:text="Sepet"
                     android:textColor="@color/white"
                     android:textSize="25sp"
                     app:layout_constraintBottom_toBottomOf="parent"

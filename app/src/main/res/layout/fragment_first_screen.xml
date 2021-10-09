@@ -81,6 +81,7 @@
         android:backgroundTint="@color/white"
         android:fontFamily="@font/work_sans_semibold"
         android:text="İlerle"
+        android:padding="8dp"
         android:textAllCaps="false"
         android:textColor="@color/red"
         android:textSize="18sp"

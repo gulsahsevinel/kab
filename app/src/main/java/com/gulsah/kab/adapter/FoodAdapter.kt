@@ -9,10 +9,8 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.gulsah.kab.R
 import com.gulsah.kab.databinding.BottomSheetDialogFoodDetailBinding
@@ -60,11 +58,26 @@ class FoodAdapter(
                 foodCount
             )
             viewModel.basketLoad()
-            Toast.makeText(mContext, "Added to basket", Toast.LENGTH_SHORT).show()
+            Toast.makeText(mContext, "${food.foodName} sepete eklendi!", Toast.LENGTH_SHORT).show()
         }
 
         holder.foodBinding.foodCard.setOnClickListener {
             showBottomSheetDialog(position)
+        }
+
+        holder.foodBinding.imageViewInfo.setOnClickListener {
+            val popup = androidx.appcompat.widget.PopupMenu(mContext, it)
+            popup.menuInflater.inflate(R.menu.food_adapter_menu, popup.menu)
+            popup.show()
+            popup.setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.action_info -> {
+                        showBottomSheetDialog(position)
+                        true
+                    }
+                    else -> false
+                }
+            }
         }
 
     }
@@ -94,8 +107,8 @@ class FoodAdapter(
         val food = foodList[position]
         binding.foodObject = food
 
-        var count = 1
-        binding.foodCount.text = count.toString()
+        var quantity = 1
+        binding.quantity = quantity
         Picasso.get().load("http://kasimadalan.pe.hu/yemekler/resimler/${food.foodMediaUrl}")
             .into(binding.imageViewDialogFood)
 
@@ -104,15 +117,15 @@ class FoodAdapter(
         }
 
         binding.buttonAddBasket.setOnClickListener {
-            count += 1
-            Log.e("add basket", count.toString())
-            binding.foodCount.text = count.toString()
+            quantity += 1
+            Log.e("add basket", quantity.toString())
+            binding.quantity = quantity
         }
         binding.buttonRemoveBasket.setOnClickListener {
-            count -= 1
-            if (count < 1) count = 1
-            Log.e("min basket", count.toString())
-            binding.foodCount.text = count.toString()
+            quantity -= 1
+            if (quantity < 1) quantity = 1
+            Log.e("min basket", quantity.toString())
+            binding.quantity = quantity
         }
 
         binding.dialogAddBasket.setOnClickListener {
@@ -121,8 +134,9 @@ class FoodAdapter(
                 food.foodName,
                 food.foodMediaUrl,
                 food.foodPrice,
-                count
+                quantity
             )
+            Toast.makeText(mContext, "${food.foodName} sepete eklendi!", Toast.LENGTH_SHORT).show()
             viewModel.basketLoad()
         }
 

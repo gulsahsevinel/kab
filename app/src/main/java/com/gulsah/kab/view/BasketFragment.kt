@@ -33,7 +33,6 @@ class BasketFragment : Fragment() {
         viewModel.basketList.observe(viewLifecycleOwner) {
             adapter = BasketAdapter(requireContext(), it, viewModel)
             binding.rv.adapter = adapter
-            Log.e("size basket fragment", it.size.toString())
         }
 
         viewModel.totalPrice.observe(viewLifecycleOwner) {

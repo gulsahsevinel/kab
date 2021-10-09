@@ -18,3 +18,8 @@ fun setBasket(toolbar: androidx.appcompat.widget.Toolbar, size : Int){
         else -> basketItem.setIcon(R.drawable.icn_full_basket)
     }
 }
+
+@BindingAdapter("android:setFoodCount")
+fun setFoodCount(textView : TextView, count : Int){
+    textView.text = "adet : $count"
+}
